@@ -34,7 +34,13 @@
 
     ![img](https://img-blog.csdn.net/20180321134330891?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L3ZpZXd5dTEyMzQ1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
-16. 设计模式
+16. es6
+
+17. js异步
+
+18. css
+
+19. 设计模式
 
     | SN                              | 描述                                                         |
     | ------------------------------- | ------------------------------------------------------------ |
@@ -69,7 +75,7 @@
     | Strategy(策略)                  | 将算法封装到类中，将选择和实现分离开来。                     |
     | Visitor(访问者)                 | 为类增加新的操作而不改变类本身。                             |
 
-17. 
+20. 
 
 
 
