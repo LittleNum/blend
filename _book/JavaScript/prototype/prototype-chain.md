@@ -1,6 +1,6 @@
-# prototype原型
+# prototype
 
-<http://www.cnblogs.com/wangfupeng1988/p/3978131.html>
+http://www.cnblogs.com/wangfupeng1988/p/3978131.html>
 
 <http://www.cnblogs.com/wangfupeng1988/p/3979290.html>
 
