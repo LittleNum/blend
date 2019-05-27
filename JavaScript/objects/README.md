@@ -124,17 +124,209 @@ ECMAScript 3，点运算符的标识符不能是保留字，但是可以用方�
 
 ## 删除属性
 
-1. 
+1. delete可以删除对象的属性
+
+   ```JavaScript
+   delete object.property
+   delete object["property"]
+   ```
+
+   
+
+2. delete只能删除自由属性，不能删除继承（影响原型）
+
+3. 成功返回true，如果delete后不是属性访问表达式，也返回true
+
+   ```
+   //以下都返回true
+   delete o.x
+   delete o.x
+   delete o.toString
+   delete 1
+   ```
+
+4. delete不能删除可配置性为false的属性（可删除不可扩展对象的可配置属性）
+
+5. 某些内置对象的属性是不可配置的，严格模式下，删除不可配置属性会报类型错误，非严格模式下，返回false
+
+   ```
+   delete Object.prototype	 //不可配置
+   var x = 1
+   delete this.x	//不能删除
+   function f(){}
+   delete this.f   //不能删除
+   ```
+
+   
+
+6. 非严格模式下删除全局对象的可配置属性时，可省略全局对象的引用；严格模式会报错
 
 
 
-检测属性
+## 检测属性
 
-枚举属性
+1. 通过in，hasOwnProperty()和propertyIsEnumerable()判断某个属性是否在某个对象中
 
-属性getter和setter
+   ```
+   var o = {x:1}
+   "x" in o
+   "y" in o
+   "toString" in o
+   
+   o.hasOwnProperty("x")   //自有属性
+   o.hasOwnProperty("y")
+   o.hasOwnProperty("toString")
+   ```
 
-属性的特性
+2. propertyIsEnumerable只有检测到是自有属性且这个属性的可枚举性为true才返回true
+
+   1. 某些内置属性是不可枚举的
+   2. 通常由JavaScript代码创建的属性都是可枚举的
+
+3. 使用"!=="判断属性是否是undefined
+
+   
+
+## 枚举属性
+
+1. for/in遍历对象中所有可枚举的属性
+
+   ```javascript
+   for(p in 0){
+   	if(!o.hasOwnProperty(p)) continue;   //跳过继承的属性
+   }
+   for(p in o){
+   	if(typeof o[p] === "function") continue;   //跳过方法
+   }
+   ```
+
+   
+
+2. extend，merge等方法
+
+   ```javascript
+   function extend(o, p){
+   	for(prop in p){
+   		o[prop] = p[prop]
+   	}
+   	return o
+   }
+   
+   function merge(o, p){
+   	for(prop in p){
+   		if(o.hasOwnPropery(prop)){
+   			continue;
+   		}
+   		o[prop] = p[prop]
+   	}
+   	return o
+   }
+   
+   function restrict(o,p){
+   	for(prop in o){
+   		if(!(prop in p)){
+   			delete o[prop]
+   		}
+   	}
+   	return o
+   }
+   
+   function subtract(o,p){
+   	for(prop in p){
+   		delete o[prop]
+   	}
+   	return o
+   }
+   
+   function union(o,p){
+   	return extend(extend({}, o), p)
+   }
+   
+   function intersection(o, p){
+   	return restrict(extend({}, o), p)
+   }
+   
+   function keys(o){
+   	if(typeof o !== "object") thorw TypeError()
+   	var result = []
+   	for( var prop in o){
+   	 	if(o.hasOwnProperty(prop)){
+   	 		result.push(prop)
+   	 	}
+   	}
+   	return result
+   }
+   ```
+
+   
+
+3. Object.keys()返回对象可枚举的自有属性
+
+4. Object.getOwnPropertyNames()返回对象自有属性的名称
+
+## 属性getter和setter
+
+1. 由getter和setter定义的属性称作“存取器属性”，不同于“数据属性”
+
+2. 定义存取器属性
+
+   ```
+   var o ={
+   	data_prop:value,
+   	get accessor_prop() {},
+   	set accessor_prop(value){}
+   }
+   ```
+
+   
+
+3. 存取器属性是可继承的
+
+4. 自增序列号
+
+   ```
+   var serialnum = {
+    	$n:0, //私有属性
+    	get next() {
+    		return this.$n++
+    	},
+    	set next(n){
+    		if(n >= this.$n){
+    			this.$n = n
+    		} else {	
+    			throw "..."	
+    		}
+    	}
+   }
+   ```
+
+   
+
+5. 返回随机数
+
+   ```
+   var random = {
+   	get octet() {
+   		return Math.floor(Math.random() * 256)
+   	}
+   	get uint16(){
+   		return Math.floor(Math.random() * 65536)
+   	}
+   	get int16(){
+   		return Math.floor(Math.random() * 65526 - 32768)
+   	}
+   }
+   ```
+
+   
+
+## 属性的特性
+
+1. 一个属性包含名字和四个特性
+2. 数据属性的4个特性分别是值value，可写性writable，可枚举型enumerable和可配置性configuratble
+3. 存取器属性不具有值value和可写性，它的可写性由setter方法存在与否决定——读取get，写入set，可枚举型和可配置性
+4. Object.getOwnPropertyDescriptor()可获得某个对象特定属性的属性描述符——自有属性
+5. 
 
 对象的三个属性
 
