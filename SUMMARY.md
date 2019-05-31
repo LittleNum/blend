@@ -11,5 +11,11 @@
             * [线程状态及转化](Java/基础/线程/thread-state.md)
     * [并发](Java/并发/README.md)
 * [Reading](Reading/README.md)
+* [MachineLearning](MachineLearning/README.md)
+    * [简介](MachineLearning/introduction.md)
+    * [降低损失](MachineLearning/loss.md)
+    * [使用TF](MachineLearning/tf.md)
+    * [泛化](MachineLearning/generalization.md)
+    * [训练集和测试集](MachineLearning/training.md)
 * [Work](Work/README.md)
 
