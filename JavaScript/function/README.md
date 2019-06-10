@@ -428,7 +428,7 @@
            get count() { return n++; },
            // Property setter doesn't allow the value of n to decrease
            set count(m) {
-           if (m >= n) n = m;
+           	if (m >= n) n = m;
            	else throw Error("count can only be set to a larger value");
            }
        };

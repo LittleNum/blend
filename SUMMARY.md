@@ -4,6 +4,7 @@
 * [JavaScript](JavaScript/README.md)
     * [object](JavaScript/objects/README.md)
     * [function](JavaScript/function/README.md)
+    * [类和模块](JavaScript/classes/README.md)
     * [prototype](JavaScript/prototype/README.md)
 * [Android](Android/README.md)
     * [存储相关](Android/存储相关.md)

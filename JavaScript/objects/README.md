@@ -349,9 +349,9 @@ ECMAScript 3，点运算符的标识符不能是保留字，但是可以用方�
    var o = {}; // Start with no properties at all
    // Add a nonenumerable data property x with value 1.
    Object.defineProperty(o, "x", { value : 1,
-   writable: true,
-   enumerable: false,
-   configurable: true});
+       writable: true,
+       enumerable: false,
+   	configurable: true});
    // Check that the property is there but is nonenumerable
    o.x; // => 1
    Object.keys(o) // => []
