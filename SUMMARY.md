@@ -2,6 +2,8 @@
 
 * [Introduction](README.md)
 * [JavaScript](JavaScript/README.md)
+    * [词法结构](JavaScript/词法结构/README.md)
+    * [类型、值和变量](JavaScript/类型值和变量/README.md)
     * [object](JavaScript/objects/README.md)
     * [function](JavaScript/function/README.md)
     * [类和模块](JavaScript/classes/README.md)
